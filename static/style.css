@@ -1,0 +1,323 @@
+/* ============================================================
+   ExpenseIQ — Premium Dark Theme
+   High-specificity overrides for Bootstrap 5
+   ============================================================ */
+
+/* ── 1. CSS VARIABLES ───────────────────────────────────────── */
+:root {
+  --bg:      #0a0a0f;
+  --surface: #13131a;
+  --card:    #1a1a25;
+  --border:  rgba(255,255,255,0.07);
+  --gold:    #f5c842;
+  --gold2:   #e8a020;
+  --text:    #f0f0f5;
+  --muted:   #6b6b80;
+  --green:   #22c55e;
+  --red:     #f87171;
+  --blue:    #60a5fa;
+  --purple:  #a78bfa;
+}
+
+/* ── 2. BASE ────────────────────────────────────────────────── */
+html, body {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif !important;
+  min-height: 100vh;
+}
+
+/* Gold + Purple ambient glow */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 5%,  rgba(245,200,66,0.08)  0%, transparent 55%),
+    radial-gradient(ellipse 50% 35% at 5%  90%,  rgba(167,139,250,0.07) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+.container { position: relative; z-index: 1; }
+
+/* ── 3. NAVBAR ──────────────────────────────────────────────── */
+nav.navbar {
+  background: linear-gradient(135deg, #16161f, #0f0f18) !important;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.5);
+  padding: 12px 0;
+}
+nav.navbar .navbar-brand {
+  font-family: 'Syne', 'Segoe UI', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.3rem !important;
+  color: var(--gold) !important;
+  letter-spacing: -0.02em;
+}
+a.btn-add, .btn-add {
+  background: linear-gradient(135deg, var(--gold), var(--gold2)) !important;
+  color: #0a0a0f !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem;
+  padding: 9px 20px;
+  box-shadow: 0 4px 16px rgba(245,200,66,0.25);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+a.btn-add:hover, .btn-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245,200,66,0.38) !important;
+  color: #0a0a0f !important;
+}
+
+/* ── 4. FLASH ALERTS ─────────────────────────────────────────── */
+.alert {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+.alert-success { border-left: 4px solid var(--green) !important; }
+.alert-danger   { border-left: 4px solid var(--red)   !important; }
+.alert-warning  { border-left: 4px solid var(--gold)  !important; }
+.btn-close { filter: invert(1) opacity(0.5); }
+
+/* ── 5. CARDS (all cards) ────────────────────────────────────── */
+.card {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  color: var(--text) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25) !important;
+}
+.card-header {
+  background-color: rgba(255,255,255,0.03) !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 18px 18px 0 0 !important;
+  color: var(--text) !important;
+  font-weight: 600;
+  padding: 15px 20px;
+}
+.card-body { color: var(--text) !important; }
+
+/* Summary cards hover lift */
+.summary-card {
+  transition: transform 0.22s, box-shadow 0.22s;
+  overflow: hidden;
+  position: relative;
+}
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.35) !important;
+}
+/* glow orb in corner */
+.summary-card::after {
+  content: '';
+  position: absolute;
+  top: -24px; right: -24px;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.05;
+}
+
+/* Icon circle */
+.icon-circle {
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Override Bootstrap's bg-primary, bg-success, bg-warning */
+.icon-circle.bg-primary { background: linear-gradient(135deg, #4f46e5, #7c3aed) !important; }
+.icon-circle.bg-success  { background: linear-gradient(135deg, #16a34a, #15803d) !important; }
+.icon-circle.bg-warning  { background: linear-gradient(135deg, #d97706, #b45309) !important; }
+
+/* KPI value text */
+.summary-card .fw-bold.fs-4 {
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 800 !important;
+  color: var(--gold) !important;
+}
+.summary-card .text-muted.small { color: var(--muted) !important; }
+
+/* ── 6. CATEGORY PROGRESS BARS ──────────────────────────────── */
+.progress {
+  background-color: rgba(255,255,255,0.07) !important;
+  border-radius: 10px;
+}
+.cat-bar {
+  background: linear-gradient(90deg, var(--gold), var(--gold2)) !important;
+  border-radius: 10px;
+  transition: width 0.9s cubic-bezier(.22,.61,.36,1);
+}
+
+/* ── 7. CATEGORY BADGES ──────────────────────────────────────── */
+.cat-badge {
+  display: inline-block;
+  font-size: 0.72rem !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  border: none !important;
+}
+.cat-food      { background-color: rgba(251,191,36,0.15) !important; color: #fbbf24 !important; }
+.cat-transport { background-color: rgba(96,165,250,0.15) !important; color: #60a5fa !important; }
+.cat-shopping  { background-color: rgba(244,114,182,0.15)!important; color: #f472b6 !important; }
+.cat-bills     { background-color: rgba(248,113,113,0.15)!important; color: #f87171 !important; }
+.cat-health    { background-color: rgba(52,211,153,0.15) !important; color: #34d399 !important; }
+.cat-education { background-color: rgba(167,139,250,0.15)!important; color: #a78bfa !important; }
+.cat-other     { background-color: rgba(156,163,175,0.15)!important; color: #9ca3af !important; }
+
+/* ── 8. TABLE ────────────────────────────────────────────────── */
+.table-responsive { border-radius: 0 0 18px 18px; overflow: hidden; }
+
+.table {
+  color: var(--text) !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-hover-bg: rgba(255,255,255,0.04) !important;
+  --bs-table-striped-bg: transparent !important;
+  margin-bottom: 0 !important;
+}
+
+/* Table header */
+.table > thead > tr > th {
+  font-size: 0.68rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted) !important;
+  font-weight: 600;
+  background-color: rgba(255,255,255,0.03) !important;
+  border-color: var(--border) !important;
+  padding: 12px 20px;
+}
+
+/* Table body cells */
+.table > tbody > tr > td {
+  background-color: transparent !important;
+  border-color: rgba(255,255,255,0.04) !important;
+  color: var(--text) !important;
+  padding: 14px 20px;
+  vertical-align: middle;
+}
+
+/* Hover row */
+.table-hover > tbody > tr:hover > td {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+
+/* Footer row */
+.table > tfoot > tr > td {
+  background-color: rgba(255,255,255,0.03) !important;
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+  padding: 12px 20px;
+}
+.table > tfoot .fw-bold { color: var(--gold) !important; }
+.table > tfoot .text-danger { color: var(--gold) !important; }
+
+/* table-light override */
+.table-light { --bs-table-bg: rgba(255,255,255,0.03) !important; }
+
+/* Amount column in red */
+.table tbody .text-danger,
+.table tbody .fw-bold.text-danger { color: var(--red) !important; }
+
+/* ── 9. ACTION BUTTONS ───────────────────────────────────────── */
+.btn-outline-primary {
+  border-color: rgba(96,165,250,0.35) !important;
+  color: var(--blue) !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+}
+.btn-outline-primary:hover {
+  background-color: rgba(96,165,250,0.12) !important;
+  border-color: var(--blue) !important;
+  color: var(--blue) !important;
+}
+.btn-outline-danger {
+  border-color: rgba(248,113,113,0.35) !important;
+  color: var(--red) !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+}
+.btn-outline-danger:hover {
+  background-color: rgba(248,113,113,0.12) !important;
+  border-color: var(--red) !important;
+  color: var(--red) !important;
+}
+
+/* ── 10. FILTER SECTION ──────────────────────────────────────── */
+.form-select, .form-control {
+  background-color: rgba(255,255,255,0.07) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  color: var(--text) !important;
+  font-size: 0.9rem;
+}
+.form-select:focus, .form-control:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(245,200,66,0.15) !important;
+  background-color: rgba(255,255,255,0.1) !important;
+}
+.form-select option { background-color: #1a1a25; color: var(--text); }
+.form-control::placeholder { color: var(--muted); }
+.form-label { color: var(--muted) !important; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ── 11. FORM PAGE BUTTONS ───────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 10px !important;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124,58,237,0.35) !important;
+  color: #fff !important;
+}
+.btn-success {
+  background: linear-gradient(135deg, #16a34a, #15803d) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 700;
+}
+.btn-outline-secondary {
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+  border-radius: 10px !important;
+}
+.btn-outline-secondary:hover {
+  background-color: rgba(255,255,255,0.08) !important;
+  color: var(--text) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+/* ── 12. EMPTY STATE ─────────────────────────────────────────── */
+.text-muted { color: var(--muted) !important; }
+
+/* ── 13. FOOTER ──────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border) !important;
+  color: var(--muted) !important;
+}
+footer small, footer .text-muted { color: var(--muted) !important; }
+
+/* ── 14. SCROLLBAR ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
+
+/* ── 15. ANIMATIONS ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card   { animation: fadeUp 0.45s ease both; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.12s; }
+.card:nth-child(3) { animation-delay: 0.19s; }
